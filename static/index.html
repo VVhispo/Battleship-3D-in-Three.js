@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./libs/tween.umd.js"></script>
+    <script src="./libs/fflate.min.js"></script>
+    <script src="./libs/three.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://threejs.org/examples/js/modifiers/TessellateModifier.js"></script>
+    <script src=""></script>
+    <script src="./scripts/classes/InvisibleField.js"></script>
+    <script src="./scripts/classes/ModelLoaders.js"></script>
+    <script src="./scripts/shaders.js"></script>
+    <script src="./scripts/classes/Animations.js"></script>
+    <script src="./scripts/classes/Ship.js"></script>
+    <script src="./scripts/classes/Game.js"></script>
+    <script src="./scripts/classes/Ui.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/Raycasters.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="loginBox">
+      <h2>Choose your name</h2>
+      <input
+        autocomplete="off"
+        type="text"
+        name="username"
+        placeholder="Username"
+      />
+      <div class="flex">
+        <button id="playButton">PLAY</button>
+        <button id="resetButton" onClick="reset()">RESET</button>
+      </div>
+
+      <img id="skull" src="./czacha.png" />
+      <h4 id="loginStatus"></h4>
+    </div>
+    <div class="loadingScreen" id="loadingScreen">
+      <div class="loadingBox">
+        <h1 class="loadingHeader">LOADING MODELS</h1>
+        <img src="loading.gif" alt="" class="loading" />
+      </div>
+    </div>
+    <div class="loser" id="loser">
+      <button
+        class="playAgainButton"
+        id="playAgainButton"
+        onclick="ui.playAgain()"
+      >
+        PLAY AGAIN
+      </button>
+    </div>
+    <div class="winner" id="winner">
+      <button
+        class="playAgainButton"
+        id="playAgainButton"
+        onclick="ui.playAgain()"
+      >
+        PLAY AGAIN
+      </button>
+    </div>
+    <div id="popUp"></div>
+    <div id="turn">Your turn!</div>
+    <!-- <button style="position: absolute; z-index: 2; top: 50px; left: 50px;" onclick="game.sinkAll()">ANIMACJA GÓRA DÓŁ</button> -->
+    <div id="placeShips" style="display: none">
+      <!-- <button
+        style="position: absolute; z-index: 2; top: 20px; left: 50px"
+        onclick="game.loadWaitingScreen()"
+      >
+        START!
+      </button> -->
+      <div id="root"></div>
+      <div class="ui-chosing-ships-buttons" id="shipTypeButtons">
+        <div class="button" id="b1" onclick="ui.selectShipType(this,1)">
+          <img
+            src="./icons/jedynkaButton.png"
+            style="width: 100%; height: 100%"
+          />
+          <p class="remaining" id="r1">4x</p>
+        </div>
+        <div class="button" id="b2" onclick="ui.selectShipType(this,2)">
+          <img
+            src="./icons/dwujkaButton.png"
+            style="width: 100%; height: 100%"
+          />
+          <p class="remaining" id="r2">3x</p>
+        </div>
+        <div class="button" id="b3" onclick="ui.selectShipType(this,3)">
+          <img
+            src="./icons/trujkaButton.png"
+            style="width: 100%; height: 100%"
+          />
+          <p class="remaining" id="r3">2x</p>
+        </div>
+        <div class="button" id="b4" onclick="ui.selectShipType(this,4)">
+          <img
+            src="./icons/czwurkaButton.png"
+            style="width: 100%; height: 100%"
+          />
+          <p class="remaining" id="r4">1x</p>
+        </div>
+      </div>
+      <img src="icons/rotate.png" id="rotateInfo" />
+      <h1 class="wait" id="wait">WAIT FOR ENEMY!</h1>
+    </div>
+    <div onclick="ui.ready()" id="ready" class="btn-ready">
+      <p>READY</p>
+    </div>
+    <div id="errShips">Place all your ships!</div>
+    <!-- <button style="position: absolute; left: 10%; top: 10%" onClick="reset()">
+      RESET
+    </button> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      const reset = () => {
+        console.log("reset");
+        socket.emit("resetUsers");
+      };
+      socket.on("test", function (msg) {
+        console.log(msg);
+      });
+    </script>
+  </body>
+</html>

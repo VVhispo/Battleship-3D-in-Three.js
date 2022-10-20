@@ -1,0 +1,277 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#root {
+  overflow: hidden;
+}
+.wait {
+  width: fit-content;
+  position: absolute;
+  font-size: 75px;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  color: black;
+  display: none;
+}
+.ui-chosing-ships-buttons {
+  z-index: 3;
+  position: absolute;
+  top: 10%;
+  left: 200px;
+  width: 200px;
+  height: 600px;
+  padding: 10px;
+  text-align: center;
+}
+.button {
+  width: 120px;
+  height: 120px;
+  background-color: rgb(54, 54, 54);
+  color: white;
+  cursor: pointer;
+  margin: 35px;
+  transition: 0.3s all ease;
+  border: 1px solid black;
+}
+.remaining {
+  font-size: 32px;
+  color: "whitesmoke";
+  position: absolute;
+  margin-left: -70px;
+  margin-top: -80px;
+}
+.clicked {
+  transform: scale(1.2) translateX(20%);
+}
+#shipTypeButtons {
+  display: none;
+}
+body {
+  background: url("../loginBackground.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#loginBox {
+  padding: 15px;
+  width: 400px;
+  min-height: 450px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0px 0px 80px 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 0px 80px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 80px 20px rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.55);
+}
+#loginBox > h2 {
+  z-index: 10;
+  font-size: 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 300;
+  text-shadow: 1px 1px 3px #23203b;
+  margin-bottom: 30px;
+  margin-top: 200px;
+}
+
+#loginBox > input[type="text"] {
+  display: block;
+  height: auto;
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: 4px 4px 2px "black";
+  color: whitesmoke;
+  font-size: 20px;
+  width: 60%;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 10px auto 0 auto;
+  transition: 0.2s ease;
+}
+
+#skull {
+  z-index: -10;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: -10px;
+}
+#playButton,
+#resetButton {
+  text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+  width: 140px;
+  height: 40px;
+  margin-top: 25px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  font-family: "Berkshire Swash";
+  font-size: 40px;
+  background: none;
+  color: rgb(0, 0, 0, 0.85);
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+#playButton:hover,
+#resetButton:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+#rotateInfo {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-90%);
+  bottom: 5%;
+}
+img {
+  -webkit-user-drag: none;
+}
+.btn-ready {
+  position: absolute;
+  right: 200px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 10px;
+  border-radius: 9px;
+  width: 150px;
+  text-align: center;
+  border: 1px solid rgb(62, 82, 152);
+  color: rgb(62, 82, 152);
+  transition: 0.4s all ease;
+  cursor: pointer;
+  display: none;
+}
+#errShips {
+  display: none;
+  position: absolute;
+  right: 180px;
+  top: 57%;
+  font-size: 24px;
+  color: red;
+}
+
+.btn-ready:hover {
+  transition: 0.4s all ease;
+  border: 1px solid white;
+  color: white;
+  background-color: rgb(62, 82, 152);
+}
+
+.loadingScreen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #afcaac;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loadingScreen {
+  display: none;
+  z-index: 12032;
+}
+.loadingHeader {
+  text-align: center;
+  color: white;
+}
+.loadingBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  width: 150px;
+  margin: 50px;
+}
+.loser {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url("../lost.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: none;
+}
+.winner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url("../win.jpg") no-repeat center center fixed;
+  background-size: 100% 100%;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+#popUp {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  font-size: 65px;
+  opacity: 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);
+}
+#turn {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  font-size: 85px;
+  color: rgb(255, 189, 114);
+  text-shadow: 1px 1px 8px rgb(77, 77, 77);
+  opacity: 0;
+}
+#loginStatus {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+.playAgainButton {
+  border: 3px solid rgb(135, 211, 135);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 50px;
+  background: none;
+  color: rgb(135, 211, 135);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s all ease;
+}
+.playAgainButton:hover {
+  transform: translate(-50%, -5px);
+  background-color: rgb(135, 211, 135);
+  color: white;
+  transition: 0.3s all ease;
+}
+.empty > img {
+  filter: grayscale(100%);
+}
