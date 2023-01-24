@@ -1,7 +1,7 @@
 //EXPRESS SERVER
 var express = require("express")
 var app = express()
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 var path = require("path")
 app.use(express.json());
 const http = require('http');
@@ -11,7 +11,8 @@ const io = new Server(server);
 const { MongoClient } = require('mongodb');
 const { connected } = require("process");
 let activeUsers = []
-const uri = "mongodb+srv://BattleshipClient:IKCVjDQ1k4BvBfcP@atlascluster.c3c3b.mongodb.net/?retryWrites=true&w=majority"
+// const uri = "mongodb+srv://BattleshipClient:IKCVjDQ1k4BvBfcP@atlascluster.c3c3b.mongodb.net/?retryWrites=true&w=majority"
+const uri = process.env.MONGODB_URI || "mongodb+srv://BattleshipClient:IKCVjDQ1k4BvBfcP@atlascluster.c3c3b.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 app.use(express.urlencoded({
     extended: true
@@ -57,7 +58,6 @@ io.on('connection', (socket) => {
             activeUsers.push(data)
         }
         if (!activeUsers.some(item => typeof (item) == 'string') && activeUsers.length == 2) {
-            console.log("STARTING")
             io.emit('gameStart', {
                 turn: activeUsers[Math.round(Math.random())]
             })
@@ -112,7 +112,6 @@ io.on('connection', (socket) => {
         let rotation = null;
         if (destroyed) {
             let oar = playerToGetShot.board
-            console.log(oar)
             let y = data.y
             let x = data.x
             if (oar[y][x - 1] != undefined && oar[y][x - 1].toString().includes(hitShip)) rotation = '-x'
